@@ -1,0 +1,49 @@
+.recent-transactions-card {
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    padding: 16px;
+    margin-bottom: 20px;
+  }
+  
+  .recent-title {
+    color: #333;
+    margin-bottom: 16px;
+    font-size: 18px;
+  }
+  
+  .recent-table-wrapper {
+    overflow-x: auto;
+  }
+  
+  .recent-transaction-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .recent-transaction-table th {
+    text-align: left;
+    padding: 8px 12px;
+    background-color: #f5f5f5;
+    font-weight: 500;
+    
+  }
+  
+  .recent-transaction-table td {
+    padding: 8px 12px;
+    border-bottom: 1px solid #eee;
+  }
+  
+  .transaction-link {
+    color: #0066cc;
+    text-decoration: none;
+    cursor: pointer;
+  }
+  
+  .transaction-link:hover {
+    text-decoration: underline;
+  }
+  
+  .recent-highlight {
+    background-color: #f0f8ff;
+  }

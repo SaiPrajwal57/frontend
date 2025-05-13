@@ -1,0 +1,54 @@
+<div class="modal-backdrop" (click)="close()"></div>
+<div class="modal-content">
+  <div class="modal-header">
+    <h3>{{ isEditMode ? "Edit" : "Add" }} Investment</h3>
+    <button class="close-btn" (click)="close()">×</button>
+  </div>
+  <div class="modal-body">
+    <label>Instrument Type</label>
+    <select
+      [disabled]="isEditMode"
+      [(ngModel)]="selectedType"
+      (change)="onTypeChange()"
+    >
+      <option value="stock">Stock</option>
+      <option value="bond">Bond</option>
+      <!-- <option value="mutualfund">Mutual Fund</option> -->
+      <!-- <option value="goldBond">Gold Bond</option> -->
+    </select>
+
+    <ng-container [ngSwitch]="selectedType">
+      <app-stock-form
+        *ngSwitchCase="'stock'"
+        [data]="data"
+        [isEditMode]="isEditMode"
+        (save)="onSave($event)"
+        (cancel)="close()"
+      ></app-stock-form>
+      <app-bond-form
+        *ngSwitchCase="'bond'"
+        [data]="data"
+        [isEditMode]="isEditMode"
+        (save)="onSave($event)"
+        (cancel)="close()"
+      ></app-bond-form>
+      <!-- <app-mutual-fund-form
+        *ngSwitchCase="'mutualfund'"
+        [data]="data"
+        [isEditMode]="isEditMode"
+        (save)="onSave($event)"
+        (cancel)="close()"
+      ></app-mutual-fund-form> -->
+      <!-- <app-gold-bond-form
+        *ngSwitchCase="'goldbond'"
+        [data]="data"
+        [isEditMode]="isEditMode"
+        (save)="onSave($event)"
+        (cancel)="close()"
+      ></app-gold-bond-form> -->
+    </ng-container>
+    
+  </div>
+</div>
+
+

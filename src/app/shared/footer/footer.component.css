@@ -1,0 +1,9 @@
+.dashboard-footer {
+  background: #f5f6f8;
+  color: #aaa;
+  text-align: center;
+  padding: 1rem 0 0.5rem 0;
+  border-top: 1px solid #e3e8ee;
+  margin-top: 2rem;
+  font-size: 0.95rem;
+}

@@ -1,0 +1,383 @@
+<div class="dashboard-container">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Emoji" rel="stylesheet">
+  <header class="dashboard-header">
+    <div class="header-row">
+      <div class="logo-title">
+        <img
+          src="assets/images/track.png"
+          alt="Fintrack Logo"
+          class="fintrack-logo"
+        />
+      </div>
+      <div class="header-actions">
+        <button class="btn-logout" (click)="logout()">Logout</button>
+        <div class="user-initial">S</div>
+      </div>
+    </div>
+  </header>
+
+  <main class="dashboard-main">
+    <div class="holdings-title-row">
+      <h2>Holdings Summary</h2>
+    </div>
+
+    <!-- Portfolio Summary Cards -->
+    <div class="summary-row">
+      <div class="summary-card">
+        <div class="summary-title">Total Value</div>
+        <div class="summary-value">₹{{ totalInvestmentValue.toFixed(2) }}</div>
+      </div>
+      <div class="summary-card">
+        <div class="summary-title">Total Cost</div>
+        <div class="summary-value">₹{{ totalInvestmentCost.toFixed(2) }}</div>
+      </div>
+      <div class="summary-card">
+        <div class="summary-title">Total Gain/Loss</div>
+        <div class="summary-value gain" *ngIf="totalGainLoss >= 0">
+          ₹{{ totalGainLoss.toFixed(2) }}
+        </div>
+        <div class="summary-value loss" *ngIf="totalGainLoss < 0">
+          ₹{{ totalGainLoss.toFixed(2) }}
+        </div>
+      </div>
+      <div class="summary-card">
+        <div class="summary-title">Percentage</div>
+        <div
+          class="summary-value percent"
+          [ngClass]="{
+            gain: totalGainLossPercentage >= 0,
+            loss: totalGainLossPercentage < 0
+          }"
+        >
+          {{ totalGainLossPercentage.toFixed(2) }}%
+        </div>
+      </div>
+    </div>
+
+    <div class="main-row">
+      <!-- Top Holdings Table -->
+      <div class="holdings-card">
+        <div class="holdings-header">
+          <span>Top Holdings</span>
+          <button class="btn-view-all" [routerLink]="['/holdings']">
+            View All
+          </button>
+        </div>
+        <table class="holdings-table">
+          <thead>
+            <tr>
+              <th>Symbol</th>
+              <th>Quantity</th>
+              <th>Purchase Price</th>
+              <th>Current Price</th>
+              <th>Current Value</th>
+              <th>Gain/Loss</th>
+              <th>%</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let inv of investments.slice(0, 3)">
+              <!-- Symbol -->
+              <td>
+                <b>
+                  {{
+                    inv.symbol ||
+                      inv.stockName ||
+                      inv.fixedIncomeName ||
+                      inv.schemeName ||
+                      inv.securityName ||
+                      "-"
+                  }}
+                </b>
+              </td>
+              <!-- Quantity -->
+              <td>
+                <ng-container [ngSwitch]="inv.type">
+                  <!-- stocks -->
+                  <span *ngSwitchCase="'Stock'">
+                    {{ inv.NumberOfShares || 1 }}
+                  </span>
+                  <!-- Mutual Funds -->
+                  <span *ngSwitchCase="'MutualFund'">
+                    {{
+                      inv.amountType === "Rupees"
+                        ? inv.amount && inv.price
+                          ? (inv.amount / inv.price).toFixed(2)
+                          : "1"
+                        : inv.amount || 1
+                    }}
+                  </span>
+                  <!-- Gold Bonds -->
+                  <span *ngSwitchCase="'GoldBond'">
+                    {{ inv.units || 1 }}
+                  </span>
+                  <!-- Bonds -->
+                  <span *ngSwitchCase="'Bond'">
+                    {{ inv.units || 1 }}
+                  </span>
+                  <!-- Default -->
+                  <span *ngSwitchDefault>
+                    {{ inv.quantity || 1 }}
+                  </span>
+                </ng-container>
+              </td>
+              <!-- Purchase Price -->
+              <td>
+                <ng-container [ngSwitch]="inv.type">
+                  <span *ngSwitchCase="'Stock'">
+                    ${{
+                      inv.purchasePrice
+                        ? inv.purchasePrice.toFixed(2)
+                        : inv.price
+                        ? inv.price.toFixed(2)
+                        : "0.00"
+                    }}
+                  </span>
+                  <span *ngSwitchCase="'MutualFund'">
+                    ${{ inv.price ? inv.price.toFixed(2) : "0.00" }}
+                  </span>
+                  <span *ngSwitchCase="'GoldBond'">
+                    ${{ inv.price ? inv.price.toFixed(2) : "0.00" }}
+                  </span>
+                  <span *ngSwitchCase="'Bond'">
+                    ${{
+                      inv.price
+                        ? inv.price.toFixed(2)
+                        : inv.investmentAmount
+                        ? inv.investmentAmount.toFixed(2)
+                        : "0.00"
+                    }}
+                  </span>
+                  <span *ngSwitchDefault>
+                    ${{ inv.price ? inv.price.toFixed(2) : "0.00" }}
+                  </span>
+                </ng-container>
+              </td>
+              <!-- Current Price -->
+              <td>
+                <ng-container [ngSwitch]="inv.type">
+                  <span *ngSwitchCase="'Stock'">
+                    ${{
+                      inv.purchasePrice
+                        ? (inv.purchasePrice * 1.05).toFixed(2)
+                        : inv.price
+                        ? (inv.price * 1.05).toFixed(2)
+                        : "0.00"
+                    }}
+                  </span>
+                  <span *ngSwitchCase="'MutualFund'">
+                    ${{ inv.price ? (inv.price * 1.05).toFixed(2) : "0.00" }}
+                  </span>
+                  <span *ngSwitchCase="'GoldBond'">
+                    ${{ inv.price ? (inv.price * 1.05).toFixed(2) : "0.00" }}
+                  </span>
+                  <span *ngSwitchCase="'Bond'">
+                    ${{
+                      inv.price
+                        ? (inv.price * 1.02).toFixed(2)
+                        : inv.investmentAmount
+                        ? (inv.investmentAmount * 1.02).toFixed(2)
+                        : "0.00"
+                    }}
+                  </span>
+                  <span *ngSwitchDefault>
+                    ${{ inv.price ? (inv.price * 1.05).toFixed(2) : "0.00" }}
+                  </span>
+                </ng-container>
+              </td>
+              <!-- Current Value -->
+              <td>
+                <ng-container [ngSwitch]="inv.type">
+                  <span *ngSwitchCase="'Stock'">
+                    ${{
+                      (
+                        (inv.numberOfShares || 1) *
+                        (inv.purchasePrice
+                          ? inv.purchasePrice * 1.05
+                          : inv.price
+                          ? inv.price * 1.05
+                          : 0)
+                      ).toFixed(2)
+                    }}
+                  </span>
+                  <span *ngSwitchCase="'MutualFund'">
+                    {{
+                      inv.amountType === "Rupees"
+                        ? inv.amount && inv.price
+                          ? "$" +
+                            (
+                              (inv.amount / inv.price) *
+                              inv.price *
+                              1.05
+                            ).toFixed(2)
+                          : inv.price
+                          ? "$" + (1 * inv.price * 1.05).toFixed(2)
+                          : "$0.00"
+                        : inv.amount && inv.price
+                        ? "$" + (inv.amount * inv.price * 1.05).toFixed(2)
+                        : inv.price
+                        ? "$" + (1 * inv.price * 1.05).toFixed(2)
+                        : "$0.00"
+                    }}
+                  </span>
+                  <span *ngSwitchCase="'GoldBond'">
+                    ${{
+                      (
+                        (inv.units || 1) * (inv.price ? inv.price * 1.05 : 0)
+                      ).toFixed(2)
+                    }}
+                  </span>
+                  <span *ngSwitchCase="'Bond'">
+                    ${{
+                      (inv.price
+                        ? (inv.units || 1) * inv.price * 1.02
+                        : inv.investmentAmount
+                        ? inv.investmentAmount * 1.02
+                        : 0
+                      ).toFixed(2)
+                    }}
+                  </span>
+                  <span *ngSwitchDefault>
+                    ${{
+                      (
+                        (inv.quantity || 1) * (inv.price ? inv.price * 1.05 : 0)
+                      ).toFixed(2)
+                    }}
+                  </span>
+                </ng-container>
+              </td>
+              <!-- Gain/Loss -->
+              <td>
+                <ng-container [ngSwitch]="inv.type">
+                  <span
+                    *ngSwitchCase="'Stock'"
+                    [ngClass]="{
+                      'text-success':
+                        (inv.purchasePrice && inv.numberOfShares
+                          ? inv.purchasePrice * 0.05 * inv.numberOfShares
+                          : 0) > 0,
+                      'text-danger':
+                        (inv.purchasePrice && inv.numberOfShares
+                          ? inv.purchasePrice * 0.05 * inv.numberOfShares
+                          : 0) < 0
+                    }"
+                  >
+                    ${{
+                      (
+                        (inv.numberOfShares || 1) *
+                        (inv.purchasePrice
+                          ? inv.purchasePrice * 0.05
+                          : inv.price
+                          ? inv.price * 0.05
+                          : 0)
+                      ).toFixed(2)
+                    }}
+                  </span>
+                  <span *ngSwitchCase="'MutualFund'" class="text-success">
+                    {{
+                      inv.amountType === "Rupees"
+                        ? inv.amount && inv.price
+                          ? "$" +
+                            (
+                              (inv.amount / inv.price) *
+                              inv.price *
+                              0.05
+                            ).toFixed(2)
+                          : inv.price
+                          ? "$" + (1 * inv.price * 0.05).toFixed(2)
+                          : "$0.00"
+                        : inv.amount && inv.price
+                        ? "$" + (inv.amount * inv.price * 0.05).toFixed(2)
+                        : inv.price
+                        ? "$" + (1 * inv.price * 0.05).toFixed(2)
+                        : "$0.00"
+                    }}
+                  </span>
+                  <span *ngSwitchCase="'GoldBond'" class="text-success">
+                    ${{
+                      (
+                        (inv.units || 1) * (inv.price ? inv.price * 0.05 : 0)
+                      ).toFixed(2)
+                    }}
+                  </span>
+                  <span *ngSwitchCase="'Bond'" class="text-success">
+                    ${{
+                      (inv.price
+                        ? (inv.units || 1) * inv.price * 0.02
+                        : inv.investmentAmount
+                        ? inv.investmentAmount * 0.02
+                        : 0
+                      ).toFixed(2)
+                    }}
+                  </span>
+                  <span *ngSwitchDefault>
+                    ${{
+                      (
+                        (inv.quantity || 1) * (inv.price ? inv.price * 0.05 : 0)
+                      ).toFixed(2)
+                    }}
+                  </span>
+                </ng-container>
+              </td>
+              <!-- Percentage -->
+              <td>
+                <ng-container [ngSwitch]="inv.type">
+                  <span *ngSwitchCase="'Stock'" class="text-success">5%</span>
+                  <span *ngSwitchCase="'MutualFund'" class="text-success"
+                    >5%</span
+                  >
+                  <span *ngSwitchCase="'GoldBond'" class="text-success"
+                    >5%</span
+                  >
+                  <span *ngSwitchCase="'Bond'" class="text-success">2%</span>
+                  <span *ngSwitchDefault>-</span>
+                </ng-container>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Quick Actions -->
+      <div class="quick-actions-card">
+        <div class="quick-actions-title">Quick Actions</div>
+        <button class="btn-holdings" [routerLink]="['/holdings']"style="width: auto; padding: 30px;">
+          <i class="fas fa-chart-bar"></i> View Holdings
+        </button>
+        <button class="btn-transactions" [routerLink]="['/transactions']"style="width: auto; padding: 30px;">
+          <i class="fas fa-clipboard"></i> Transactions
+        </button>
+      </div>
+    </div>
+
+      <!-- Charts Section -->
+      <div class="charts-row">
+        <!-- Asset Allocation Chart Card -->
+        <div class="chart-card">
+          <div class="chart-title">Asset Allocation</div>
+          <div class="chart-canvas-wrapper">
+            <canvas id="assetAllocationChart"></canvas>
+          </div>
+        </div>
+     
+        <!-- Investment Type Chart Card -->
+        <div class="chart-card">
+          <div class="chart-title">Investment Type</div>
+          <div class="chart-canvas-wrapper">
+            <canvas id="investmentTypeChart"></canvas>
+          </div>
+        </div>
+      </div>
+     
+ 
+  <div class="card mt-4">
+    <div class="card-header">
+      <h5 class="mb-0">Performance (Gain/Loss per Investment)</h5>
+    </div>
+    <div class="chart-container1">
+      <canvas id="performanceChart"></canvas>
+    </div>
+  </div>
+ 
+  </main>
+</div>

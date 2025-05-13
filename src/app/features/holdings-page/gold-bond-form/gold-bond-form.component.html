@@ -1,0 +1,36 @@
+<form [formGroup]="form" (ngSubmit)="submit()">
+    <label>Transaction Type</label>
+    <select formControlName="transactionType">
+      <option value="Buy">Buy</option>
+      <option value="Sell">Sell</option>
+    </select>
+  
+    <label>Security's Name</label>
+    <input formControlName="securityName" type="text" />
+  
+    <label>Purchase Date</label>
+    <input formControlName="purchaseDate" type="date" />
+  
+    <label>Units</label>
+    <input formControlName="units" type="number" />
+  
+    <label>Price</label>
+    <input formControlName="price" type="number" />
+  
+    <label>Brokerage</label>
+    <input formControlName="brokerage" type="number" />
+    <select formControlName="brokerageType">
+      <option value="%">%</option>
+      <option value="rs">Rs</option>
+    </select>
+  
+    <label>Coupon Rate</label>
+    <input formControlName="couponRate" type="number" />
+  
+    <label>Maturity Date</label>
+    <input formControlName="maturityDate" type="date" />
+  
+    <button type="submit" [disabled]="form.invalid">Save</button>
+    <button type="button" (click)="cancel.emit()">Cancel</button>
+  </form>
+  

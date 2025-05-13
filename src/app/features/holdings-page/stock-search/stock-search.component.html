@@ -1,0 +1,33 @@
+<div class="search-container">
+  <div class="search-input-wrapper">
+    <input
+      type="text"
+      [(ngModel)]="searchQuery"
+      (input)="onSearchInput()"
+      placeholder="Search for stocks..."
+      class="search-input"
+      #searchInput
+    />
+    <span *ngIf="searchQuery" class="clear-icon" (click)="clearSearch()"
+      >×</span
+    >
+  </div>
+
+  <div class="suggestions-container" *ngIf="showSuggestions">
+    <div *ngIf="isLoading" class="loading-indicator">Loading...</div>
+
+    <ng-container *ngIf="!isLoading">
+      <div
+        *ngFor="let suggestion of suggestions"
+        (click)="selectSuggestion(suggestion)"
+        class="suggestion-item"
+      >
+        <strong>{{ suggestion.symbol }}</strong> - {{ suggestion.name }}
+      </div>
+
+      <div *ngIf="suggestions.length === 0 && searchQuery" class="no-results">
+        No results found for "{{ searchQuery }}"
+      </div>
+    </ng-container>
+  </div>
+</div>

@@ -1,0 +1,72 @@
+ 
+<div class="container" style="min-height: 90vh;">
+  <div class="row justify-content-center align-items-center h-100">
+    <!-- Left Side: Image -->
+    <div class="col-lg-5 d-none d-lg-block text-center" style="margin-right: 40px;">
+      <img src="assets/images/1.jpg" alt="Illustration" class="img-fluid" style="max-height: 600px; border-radius: 3%;" />
+    </div>
+ 
+    <!-- Right Side: Form Card -->
+    <div class="col-lg-5" style="margin-left: 40px;">
+      <div class="text-center mb-3">
+        <img src="assets/images/logo2.png" alt="FINTRACK" height="70" class="me-0" />
+      </div>
+      <div class="card p-3 shadow-lg" style="max-width: 500px; margin: auto;">
+       
+ 
+        <h4 class="text-center mb-2" style="color: #004c6a; font-family: 'Poppins', sans-serif; font-weight: bold;">
+          &nbsp;&nbsp;REGISTER
+        </h4>
+ 
+        <form [formGroup]="signupForm" (ngSubmit)="onSubmit()">
+          <label>Name: <input formControlName="name" /></label>
+          <label>Email: <input formControlName="email" />
+            <button type="button" (click)="sendVerificationCode()">Verify Email</button>
+          </label>
+         
+          <!-- Verification code input, visible only after email verification button is clicked -->
+          <div *ngIf="verificationCodeSent">
+            <label>Enter Verification Code:
+              <input type="text" formControlName="verificationCode" />
+            </label>
+            <button type="button" (click)="verifyCode()">Verify</button>
+          </div>
+         
+          <!-- Display error message -->
+          <div *ngIf="errorMessage" class="error-message">
+            {{ errorMessage }}
+          </div>
+         
+          <label>UserName: <input formControlName="UserName" /></label>
+          <label>Password: <input type="password" formControlName="Password" /></label>
+          <label>Confirm Password: <input type="password" formControlName="confirmPassword" /></label>
+         
+          <label>Security Question:
+            <select formControlName="securityQuestion">
+              <option value="">--Select a question--</option>
+              <option *ngFor="let question of securityQuestions" [value]="question">{{ question }}</option>
+            </select>
+          </label>
+         
+          <label>Security Answer: <input formControlName="securityAnswer" /></label>
+         
+          <button type="submit" [disabled]="!signupForm.valid || !emailVerified">Sign Up</button>
+        </form>
+ 
+<!-- Modal -->
+<div *ngIf="showModal" class="modal fade show" tabindex="-1" style="display: block;">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Registration Successful</h5>
+        <button type="button" class="btn btn-secondary" aria-label="Close" (click)="closeModal()">X</button>
+      </div>
+      <div class="modal-body">
+        <p>Your account has been created successfully. You will now be redirected to the login page.</p>
+      </div>
+    </div>
+  </div>
+</div>
+<br>
+ 
+ 

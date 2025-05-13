@@ -1,0 +1,156 @@
+<div class="transactions-container">
+  <!-- Top Header -->
+  <header class="fintrack-header">
+    <div class="header-left">
+      <img
+        src="assets/images/track.png"
+        alt="FinTrack Logo"
+        class="fintrack-logo"
+      />
+    </div>
+    <div class="header-right">
+      <div class="user-initial">S</div>
+    </div>
+  </header>
+ 
+  <main class="fintrack-main">
+    <!-- Page Title & Add Button -->
+    <div class="holdings-title-row">
+      <h2>Holdings Summary</h2>
+    </div>
+ 
+    <!-- Holdings Summary Cards -->
+    <div class="summary-row">
+      <div class="summary-card">
+        <div class="summary-label">Current Value</div>
+        <div class="summary-value">₹{{ totalInvestmentValue.toFixed(2) }}</div>
+      </div>
+      <div class="summary-card">
+        <div class="summary-label">Invested Value</div>
+        <div class="summary-value">₹{{ totalInvestmentCost.toFixed(2) }}</div>
+      </div>
+      <div class="summary-card">
+        <div class="summary-label">Per Day Gain/Loss</div>
+        <div class="summary-value" style="color: #28a745 ;">₹{{ perDayGainLoss.toFixed(2) }}</div>
+      </div>
+      <div class="summary-card">
+        <div class="summary-label">Total Gain/Loss</div>
+        <div
+          class="summary-value"
+          [ngClass]="{
+            'text-success': totalGainLoss > 0,
+            'text-danger': totalGainLoss < 0
+          }"
+        >
+          ₹{{ totalGainLoss.toFixed(2) }}
+        </div>
+      </div>
+    </div>
+ 
+    <div class="nav-buttons">
+      <button class="nav-btn" (click)="goToDashboard()">Dashboard</button>
+      <button class="nav-btn" (click)="goToHoldings()">Holdings</button>
+      <button class="nav-btn" (click)="goToTransactions()">Transactions</button>
+    </div>
+ 
+    <h2>Recent Transactions</h2>
+    <table class="transaction-table">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Transaction Type</th>
+          <th>Date</th>
+          <th>Price</th>
+          <th>Units/Shares</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let txn of recentTransactions">
+          <td>{{ txn.name }}</td>
+          <td>{{ txn.type }}</td>
+          <td>{{ txn.transactionType }}</td>
+          <td>{{ txn.date | date: 'dd-MM-yyyy'}}</td>
+          <td>{{ txn.amount }}</td>
+          <td>{{ txn.units }}</td>
+        </tr>
+      </tbody>
+    </table>
+ 
+    <!-- filters card -->
+    <div class="card filters-card">
+      <div class="filter-row">
+        <div class="filter-group">
+          <label>From Date</label>
+          <input type="date" [(ngModel)]="fromDate" class="form-input" />
+        </div>
+        <div class="filter-group">
+          <label>To Date</label>
+          <input type="date" [(ngModel)]="toDate" class="form-input" />
+        </div>
+        <div class="filter-group">
+          <label>Transaction Type</label>
+          <select [(ngModel)]="selectedType" class="form-input">
+            <option value="all">All Types</option>
+            <option value="buy">Buy</option>
+            <option value="sell">Sell</option>
+            <option value="dividend">Dividend</option>
+          </select>
+        </div>
+      </div>
+      <div class="filter-row">
+        <div class="search-group">
+          <div class="search-input-container">
+            <input
+              type="text"
+              [(ngModel)]="searchQuery"
+              placeholder="Search by name..."
+              class="search-input"
+            />
+          </div>
+          <button (click)="applyFilters()" class="search-button">
+            Search
+          </button>
+          <button (click)="clearFilters()" class="clear-button">
+            Clear
+          </button>
+        </div>
+      </div>
+    </div>
+   
+    <!-- <div class="transactions-header">
+      <h2>All Transactions</h2>
+      <button (click)="exportToExcel()" class="export-button">Export</button>
+    </div> -->
+    <div class="transactions-header">
+      <h2>All Transactions</h2>
+      <a class="tab-link export-btn" (click)="exportToExcel()">
+        <i class="fas fa-file-excel"></i> Export to Excel
+      </a>
+    </div>
+    <table class="transaction-table">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Transaction Type</th>
+          <th>Date</th>
+          <th>Price</th>
+          <th>Units/Shares</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let txn of filteredTransactions">
+          <td>{{ txn.name }}</td>
+          <td>{{ txn.type }}</td>
+          <td>{{ txn.transactionType }}</td>
+          <td>{{ txn.date | date: 'dd-MM-yyyy'}}</td>
+          <td>{{ txn.amount }}</td>
+          <td>{{ txn.units }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </main>
+</div>
+ 
+ 

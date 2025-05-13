@@ -1,0 +1,116 @@
+<form [formGroup]="form" (ngSubmit)="submit()" class="form-scroll-container" style="max-width: 1200px; margin: 0 auto;">
+  <div class="form-grid">
+    <!-- Transaction Type -->
+    <div class="form-group">
+      <label for="transactionType">Transaction Type</label>
+      <select id="transactionType" formControlName="transactionType">
+        <option value="Buy">Buy</option>
+        <option value="Sell">Sell</option>
+      </select>
+    </div>
+
+    <!-- Stock Name: Search or Input depending on mode -->
+    <div class="form-group">
+      <label for="stockName">Stock Name</label>
+      <ng-container *ngIf="!isEditMode; else editStockName">
+        <app-stock-search
+          id="stockName"
+          [placeholder]="'Search for stocks...'"
+          (symbolSelected)="onstockSelected($event)"
+          [disabled]="isEditMode"
+        ></app-stock-search>
+      </ng-container>
+      <ng-template #editStockName>
+        <input id="stockName" formControlName="stockName" type="text" />
+      </ng-template>
+    </div>
+
+    <!-- Demat Account -->
+    <div class="form-group">
+      <label for="dematAccount">Demat Account</label>
+      <input id="dematAccount" formControlName="dematAccount" type="text" />
+    </div>
+
+    <!-- Date of Investment -->
+    <div class="form-group">
+      <label for="purchaseDate">Date of Investment</label>
+      <input id="purchaseDate" formControlName="purchaseDate" type="date" />
+    </div>
+
+    <!-- Number of Shares -->
+    <div class="form-group">
+      <label for="numberOfShares">Number of Shares</label>
+      <input id="numberOfShares" formControlName="numberOfShares" type="number" />
+    </div>
+
+    <!-- Brokerage -->
+    <div class="form-group">
+      <label for="brokerage">Brokerage</label>
+      <input id="brokerage" formControlName="brokerage" type="number" />
+    </div>
+
+    <!-- Brokerage Type -->
+    <div class="form-group">
+      <label for="brokerageType">Brokerage Type</label>
+      <select id="brokerageType" formControlName="brokerageType">
+        <option value="%">%</option>
+        <option value="rs">Rs</option>
+      </select>
+    </div>
+
+    <!-- Purchase Price -->
+    <div class="form-group">
+      <label for="purchasePrice">Purchase Price</label>
+      <input id="purchasePrice" formControlName="purchasePrice" type="number" />
+    </div>
+
+    <!-- Sell fields: Only visible when transactionType is Sell -->
+    <ng-container *ngIf="form.get('transactionType')?.value === 'Sell'">
+      <div class="form-group">
+        <label for="sellDate">Sell Date</label>
+        <input id="sellDate" formControlName="sellDate" type="date" />
+        <div *ngIf="form.get('sellDate')?.touched && form.get('sellDate')?.hasError('required')" class="error">
+          Sell Date is required.
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="sellPrice">Sell Price</label>
+        <input id="sellPrice" formControlName="sellPrice" type="number" />
+        <div *ngIf="form.get('sellPrice')?.touched && form.get('sellPrice')?.hasError('required')" class="error">
+          Sell Price is required.
+        </div>
+      </div>
+    </ng-container>
+  </div>
+
+  <!-- Prompt for correction or sell when quantity reduced -->
+  <div *ngIf="showSellPrompt" class="sell-prompt-modal">
+    <p>
+      You have reduced the number of shares from {{ sellPromptData.originalQty }} to {{ sellPromptData.newQty }}.<br>
+      Is this a correction or did you actually sell shares?
+    </p>
+    <button type="button" (click)="handleSellPrompt('correction')">Just a correction</button>
+    <button type="button" (click)="handleSellPrompt('sell')">I sold shares</button>
+  </div>
+
+  <!-- Extra sell fields if user chooses "I sold shares" in the prompt -->
+  <form *ngIf="showSellFields" [formGroup]="sellForm" class="sell-fields-modal" (ngSubmit)="confirmSell()">
+    <label>Sell Date</label>
+    <input type="date" formControlName="sellDate" />
+    <div *ngIf="sellForm.get('sellDate')?.touched && sellForm.get('sellDate')?.hasError('required')" class="error">
+      Sell Date is required.
+    </div>
+    <label>Sell Price</label>
+    <input type="number" formControlName="sellPrice" />
+    <div *ngIf="sellForm.get('sellPrice')?.touched && sellForm.get('sellPrice')?.hasError('required')" class="error">
+      Sell Price is required.
+    </div>
+    <button type="submit" [disabled]="sellForm.invalid">Confirm Sell</button>
+    <button type="button" (click)="showSellFields = false">Cancel</button>
+  </form>
+
+  <div class="form-actions">
+    <button type="submit" [disabled]="form.invalid">Save</button>
+    <button type="button" (click)="cancel.emit()">Cancel</button>
+  </div>
+</form>

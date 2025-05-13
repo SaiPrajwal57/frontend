@@ -1,0 +1,415 @@
+.dashboard-container {
+  font-family: "Segoe UI", Arial, sans-serif;
+  background: #fafbfc;
+  min-height: 100vh;
+  margin-bottom: 40px;
+}
+
+.dashboard-header {
+  background: #f6f8f8;
+  border-bottom: 1px solid #e3e8ee;
+  padding: 1.5rem 2rem 1rem 2rem;
+}
+
+.header-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo-title {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.fintrack-logo {
+  height: 48px;
+}
+
+.fintrack-title {
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: #2471a3;
+  letter-spacing: 2px;
+}
+
+.fintrack-tagline {
+  font-size: 1rem;
+  color: #888;
+  margin-left: 1rem;
+}
+
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+}
+
+.btn-logout {
+  background: #fff;
+  border: 1px solid #e74c3c;
+  color: #e74c3c;
+  border-radius: 6px;
+  padding: 0.5rem 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.btn-logout:hover {
+  background: #e74c3c;
+  color: #fff;
+}
+
+.user-initial {
+  background: #e3e8ee;
+  color: #2471a3;
+  font-weight: bold;
+  border-radius: 50%;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+}
+
+.dashboard-main {
+  padding: 2rem 2.5rem 1rem 2.5rem;
+}
+
+.summary-row {
+  display: flex;
+  gap: 28px; 
+  margin-bottom: 32px; 
+}
+
+.summary-card {
+  flex: 1;
+  background: #f3f4f6; 
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05); 
+  padding: 24px 0 18px 0;
+  text-align: center;
+  border: 1px solid #d1d5db; 
+}
+
+.summary-label {
+  font-size: 1.02rem;
+  color: #6b7280; 
+  margin-bottom: 8px;
+}
+
+.summary-value {
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: #374151; 
+}
+
+.text-success {
+  color: #28a745 !important; 
+}
+
+.text-danger {
+  color: #dc3545 !important; 
+}
+.holdings-title-row {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  margin-bottom: 18px;
+  padding: 12px 16px;
+  border-bottom: 1px solid #e3e4e6; 
+  background-color: #f5f6f8; 
+  border-radius: 6px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.035); 
+}
+
+.holdings-title-row h2 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #4b5563; 
+  margin: 0;
+}
+
+.holdings-title-row .actions {
+  display: flex;
+  gap: 12px;
+}
+
+.summary-title {
+  font-size: 1.1rem;
+  color: #888; 
+  margin-bottom: 0.6rem;
+}
+
+.summary-value.gain,
+.percent.gain {
+  color: #27ae60; 
+}
+
+.summary-value.loss,
+.percent.loss {
+  color: #e74c3c; 
+}
+
+.summary-value.percent {
+  font-size: 1.3rem;
+}
+
+.summary-card {
+  border: 1px solid #e0e0e0; 
+}
+
+.main-row {
+  display: flex;
+  gap: 2rem;
+}
+
+
+.holdings-card {
+  flex: 2;
+  background: #f5f6f8; 
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); 
+  padding: 1.5rem;
+  border: 2px solid #cbd5e1; 
+}
+
+.holdings-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  color: #2471a3; 
+  padding: 0.8rem 1rem; 
+  border-bottom: 1px solid #d1d5db; 
+}
+
+.btn-view-all {
+  background: #fff;
+  border: 1px solid #2471a3;
+  color: #2471a3;
+  border-radius: 5px;
+  padding: 0.3rem 0.9rem;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.btn-view-all:hover {
+  background: #2471a3;
+  color: #fff;
+}
+
+.holdings-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 1rem;
+}
+
+.holdings-table th,
+.holdings-table td {
+  padding: 0.7rem 0.5rem;
+  border-bottom: 1px solid #f0f0f0;
+  text-align: center;
+}
+
+.holdings-table th {
+  background: #f5f6f8;
+  color: #2471a8;
+  font-weight: 600;
+}
+
+.holdings-table td.gain {
+  color: #27ae60;
+}
+
+.holdings-table td.loss {
+  color: #e74c3c;
+}
+
+.quick-actions-card {
+  flex: 1;
+  background: #f5f6f8; 
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(36, 113, 163, 0.1);
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+  align-items: stretch;
+  border: 1px solid #d1d5db; 
+}
+
+.quick-actions-title {
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  color: #2471a3; 
+  text-align: center;
+}
+
+.btn-holdings,
+.btn-transactions {
+  padding: 1rem;
+  border: none;
+  border-radius: 8px;
+  font-size: 1.05rem;
+  font-weight: 600;
+  cursor: pointer;
+  margin-bottom: 0.7rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.7rem;
+  transition: background 0.2s;
+}
+
+.btn-holdings {
+  background: #2471a3;
+  color: #fff;
+}
+
+.btn-holdings:hover {
+  background: #145080;
+}
+
+.btn-transactions {
+  background: #27ae60;
+  color: #fff;
+}
+
+.btn-transactions:hover {
+  background: #1e8449;
+}
+
+.icon {
+  font-size: 1.5rem;
+}
+.nav-buttons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 15px; 
+  margin: 20px 0; 
+  background: #f5f6f8; 
+  border-radius: 12px; 
+  padding: 12px 20px; 
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.035); 
+  border: 1px solid #e3e4e6; 
+}
+
+
+.nav-btn {
+  padding: 12px 24px; 
+  font-size: 1rem; 
+  font-weight: 500; 
+  color: #4b5563; 
+  background-color: #ffffff; 
+  border: 1px solid #e3e4e6; 
+  border-radius: 8px; 
+  cursor: pointer; 
+  transition: background-color 0.3s ease, transform 0.2s ease,
+    box-shadow 0.2s ease; 
+}
+
+.nav-btn:hover {
+  background-color: #f0f1f3; 
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1); 
+  transform: scale(1.05); 
+}
+
+/* Active Navigation Button */
+.nav-btn.active {
+  background-color: #4b5563; 
+  color: #e5e7eb; 
+  font-weight: 800; 
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3); 
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); 
+  border: 2px solid #2d3748; 
+  transform: scale(1.05); 
+  transition: background-color 0.3s ease, transform 0.2s ease,
+    box-shadow 0.2s ease, border 0.2s ease; 
+  background-color: #e3e4e6; 
+}
+
+.charts-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.chart-card {
+  flex: 1 1 45%;
+  background-color: #fff;
+  border-radius: 12px;
+  padding: 1rem;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.05);
+}
+
+#assetAllocationChart,
+#investmentTypeChart {
+max-width: 100%; 
+height: auto; 
+}
+
+/* Optional: Add some spacing to the charts */
+.chart-container {
+padding: 20px;
+border-radius: 8px;
+box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+height: 400px;
+}
+
+canvas {
+height: 100% !important;  
+width: 100% !important;  
+}
+.chart-container1 {
+position: relative;
+height: 300px;
+width: 100%;
+}
+
+/* Unified Chart Container Style */
+.chart-card {
+flex: 1 1 45%;
+background: #f5f6f8; 
+border-radius: 12px;
+padding: 1.5rem;
+box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+border: 1px solid #d1d5db; 
+display: flex;
+flex-direction: column;
+align-items: center;
+justify-content: center;
+min-height: 350px; 
+}
+
+/* Optional Chart Title Style */
+.chart-title {
+font-size: 1.2rem;
+font-weight: 600;
+color: #2471a3; 
+margin-bottom: 1rem;
+text-align: center;
+}
+
+/* Inner container for canvas to manage spacing and responsiveness */
+.chart-canvas-wrapper {
+position: relative;
+width: 100%;
+height: 100%;
+max-height: 300px;
+}
+
+/* Make canvas responsive */
+canvas {
+width: 100% !important;
+height: 100% !important;
+}

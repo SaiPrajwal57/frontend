@@ -1,0 +1,66 @@
+<form [formGroup]="form" (ngSubmit)="submit()">
+    <label>Transaction Type</label>
+    <select formControlName="transactionType">
+      <option value="Buy">Buy</option>
+      <option value="Sell">Sell</option>
+    </select>
+  
+    <label>Scheme Name</label>
+    <input formControlName="SchemeName" type="text" />
+  
+    <label>Folio No.</label>
+    <input formControlName="FolioNumber" type="text" />
+  
+    <label>Date of Investment</label>
+    <input formControlName="InvestmentDate" type="date" />
+  
+    <label>Amount Type</label>
+    <select formControlName="AmountType">
+      <option value="Rupees">Amount (₹)</option>
+      <option value="Units">Units</option>
+    </select>
+  
+    <label>Amount / Units</label>
+    <input formControlName="Amount" type="number" />
+  
+    <label>Price</label>
+    <input formControlName="Price" type="number" />
+  
+   <button type="submit" [disabled]="form.invalid">Save</button>
+    <button type="button" (click)="cancel.emit()">Cancel</button>
+  </form>
+  
+
+   <!-- <form [formGroup]="form" (ngSubmit)="submit()">
+    <label>Transaction Type</label>
+    <select formControlName="transactionType">
+      <option value="Buy">Buy</option>
+      <option value="Sell">Sell</option>
+    </select>
+ 
+    <label>Scheme Name</label>
+    <input formControlName="schemeName" type="text" />
+ 
+    <label>Folio No.</label>
+    <input formControlName="FolioNumber" type="text" />
+ 
+    <label>Date of Investment</label>
+    <input formControlName="investmentDate" type="date" />
+ 
+    <label>Amount Type</label>
+    <select formControlName="amountType">
+      <option value="Rupees">Amount (₹)</option>
+      <option value="Units">Units</option>
+    </select>
+ 
+    <label>Amount / Units</label>
+    <input formControlName="amount" type="number" />
+ 
+    <label>Price</label>
+    <input formControlName="price" type="number" />
+ 
+    <button type="submit" [disabled]="form.invalid">Save</button>
+    <button type="button" (click)="cancel.emit()">Cancel</button>
+  </form>
+ 
+  -->

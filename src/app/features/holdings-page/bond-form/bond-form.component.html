@@ -1,0 +1,103 @@
+<!-- <form [formGroup]="form" (ngSubmit)="submit()" class="form-scroll-container">
+  <div class="form-grid">
+    <div class="form-group">
+      <label for="transactionType">Transaction Type</label>
+      <select id="transactionType" formControlName="transactionType">
+        <option value="Buy">Buy</option>
+        <option value="Sell">Sell</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="fixedIncomeName">Fixed Income Name</label>
+      <input id="fixedIncomeName" formControlName="fixedIncomeName" type="text" />
+    </div>
+
+    <div class="form-group">
+      <label for="investmentDate">Investment Date</label>
+      <input id="investmentDate" formControlName="investmentDate" type="date" />
+    </div>
+
+    <div class="form-group">
+      <label for="investmentAmount">Investment Amount</label>
+      <input id="investmentAmount" formControlName="investmentAmount" type="number" />
+    </div>
+
+    <div class="form-group">
+      <label for="couponRate">Coupon Rate (% p.a.)</label>
+      <input id="couponRate" formControlName="couponRate" type="number" />
+    </div>
+
+    <div class="form-group">
+      <label for="compoundingFrequency">Compounding Frequency</label>
+      <select id="compoundingFrequency" formControlName="compoundingFrequency">
+        <option value="Monthly">Monthly</option>
+        <option value="Quarterly">Quarterly</option>
+        <option value="Half-Yearly">Half-Yearly</option>
+        <option value="Yearly">Yearly</option>
+        <option value="On Maturity">On Maturity</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="interestType">Interest Type</label>
+      <select id="interestType" formControlName="interestType">
+        <option value="Accrued">Accrued</option>
+        <option value="Interest Payout">Interest Payout</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="maturityDate">Maturity Date</label>
+      <input id="maturityDate" formControlName="maturityDate" type="date" />
+    </div>
+  </div>
+
+  <div class="form-actions">
+    <button type="submit" [disabled]="form.invalid">Save</button>
+    <button type="button" (click)="cancel.emit()">Cancel</button>
+  </div>
+</form> -->
+
+
+<form [formGroup]="form" (ngSubmit)="submit()">
+  <label>Transaction Type</label>
+  <select formControlName="transactionType">
+    <option value="Buy">Buy</option>
+    <option value="Sell">Sell</option>
+  </select>
+
+  <label>Fixed Income Name</label>
+  <input formControlName="fixedIncomeName" type="text" />
+
+  <label>Investment Date</label>
+  <input formControlName="investmentDate" type="date" />
+
+  <label>Investment Amount</label>
+  <input formControlName="investmentAmount" type="number" />
+
+  <label>Coupon Rate (% p.a.)</label>
+  <input formControlName="couponRate" type="number" />
+
+  <label>Compounding Frequency</label>
+  <select formControlName="compoundingFrequency">
+    <option value="Monthly">Monthly</option>
+    <option value="Quarterly">Quarterly</option>
+    <option value="Half-Yearly">Half-Yearly</option>
+    <option value="Yearly">Yearly</option>
+    <option value="On Maturity">On Maturity</option>
+  </select>
+
+  <label>Interest Type</label>
+  <select formControlName="interestType">
+    <option value="Accrued">Accrued</option>
+    <option value="Interest Payout">Interest Payout</option>
+  </select>
+
+  <label>Maturity Date</label>
+  <input formControlName="maturityDate" type="date" />
+
+  <button type="submit" [disabled]="form.invalid">Save</button>
+  <button type="button" (click)="cancel.emit()">Cancel</button>
+</form>
+

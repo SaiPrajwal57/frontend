@@ -1,0 +1,392 @@
+body {
+  background: #f5f7fa;
+}
+ 
+.fintrack-header {
+  background: #f6f8f8;
+  border-bottom: 1px solid #e3e8ee;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 24px 36px 16px 36px;
+}
+ 
+.fintrack-logo {
+  height: 48px;
+}
+ 
+.header-center {
+  flex: 1;
+  text-align: center;
+}
+ 
+.fintrack-title {
+  font-size: 2.3rem;
+  font-weight: 700;
+  color: #007991;
+  letter-spacing: 2px;
+}
+ 
+.fintrack-tagline {
+  font-size: 1.1rem;
+  color: #888;
+  margin-top: 2px;
+}
+ 
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+}
+ 
+.user-initial {
+  background: #e3e8ee;
+  color: #007991;
+  font-weight: bold;
+  border-radius: 50%;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+}
+.fintrack-main {
+  max-width: 1400px; 
+  margin: 0 auto;
+  padding: 28px 24px 32px 24px;
+}
+ 
+.holdings-title-row {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  margin-bottom: 18px;
+  padding: 12px 16px;
+  border-bottom: 1px solid #e3e4e6; 
+  background-color: #f5f6f8; 
+  border-radius: 6px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.035); 
+}
+ 
+.holdings-title-row h2 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #4b5563; 
+  margin: 0;
+}
+ 
+.holdings-title-row .actions {
+  display: flex;
+  gap: 12px;
+}
+ 
+
+.transaction-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 1rem; 
+  margin-top: 20px;
+}
+ 
+.transaction-table th,
+.transaction-table td {
+  padding: 0.7rem 0.5rem; 
+  border-bottom: 1px solid #f0f0f0; 
+  text-align: center; 
+}
+ 
+.transaction-table th {
+  background: #f7fafd;
+  color: #2471a3;
+  font-weight: 600;
+}
+
+.transaction-table td.gain {
+  color: #27ae60;
+}
+
+.transaction-table td.loss {
+  color: #e74c3c;
+}
+
+h2 {
+  margin-top: 20px;
+  font-size: 1.5rem;
+}
+
+.summary-row {
+  display: flex;
+  gap: 28px;
+  margin-bottom: 32px;
+}
+
+.summary-card {
+  flex: 1;
+  background: #f3f4f6;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  padding: 24px 0 18px 0;
+  text-align: center;
+  border: 1px solid #d1d5db;
+}
+
+.summary-label {
+  font-size: 1.02rem;
+  color: #6b7280;
+  margin-bottom: 8px;
+}
+
+.summary-value {
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: #374151;
+}
+
+.text-success {
+  color: #28a745 !important;
+}
+
+.text-danger {
+  color: #dc3545 !important;
+}
+
+.nav-buttons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+  margin: 20px 0;
+  background: #f5f6f8;
+  border-radius: 12px;
+  padding: 12px 20px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.035);
+  border: 1px solid #e3e4e6;
+}
+/* Navigation Button Styles */
+.nav-btn {
+  padding: 12px 24px; 
+  font-size: 1rem; 
+  font-weight: 500; 
+  color: #4b5563; 
+  background-color: #ffffff;
+  border: 1px solid #e3e4e6; 
+  border-radius: 8px; 
+  cursor: pointer; 
+  transition: background-color 0.3s ease, transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+ 
+.nav-btn:hover {
+  background-color: #f0f1f3; 
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1); 
+  transform: scale(1.05); 
+}
+ 
+.nav-btn:active {
+  background-color: #e3e4e6; 
+  transform: scale(0.95); 
+}
+ 
+/* Active Navigation Button */
+.nav-btn.active {
+  background-color: #4b5563; 
+  color: #e5e7eb; 
+  font-weight: 800; 
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3); 
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); 
+  border: 2px solid #2d3748; 
+  transform: scale(1.05);
+  transition: background-color 0.3s ease, transform 0.2s ease,
+    box-shadow 0.2s ease, border 0.2s ease; 
+}
+ 
+/* Filter Card Styles */
+.filters-card {
+  background-color: #ffffff; 
+  border: 1px solid #ddd; 
+  border-radius: 8px; 
+  padding: 20px; 
+  margin: 20px 0; 
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); 
+}
+ 
+.filter-row {
+  display: flex;
+  flex-wrap: wrap; 
+  gap: 20px; 
+  margin-bottom: 16px; 
+}
+ 
+.filter-group {
+  flex: 1; 
+  min-width: 220px; 
+}
+ 
+.filter-group label {
+  display: block;
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 8px; 
+  color: #333; 
+}
+ 
+.form-input {
+  width: 100%; 
+  padding: 10px 12px; 
+  font-size: 14px;
+  border: 1px solid #ccc; 
+  border-radius: 4px; 
+  outline: none;
+  transition: border-color 0.3s;
+}
+ 
+.form-input:focus {
+  border-color: #007bff; 
+  box-shadow: 0 0 4px rgba(0, 123, 255, 0.25); 
+}
+ 
+.search-group {
+  display: flex;
+  align-items: center;
+  gap: 12px; 
+}
+ 
+.search-input-container {
+  flex: 1; 
+}
+ 
+.search-input {
+  width: 100%; 
+  padding: 10px 12px; 
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 4px; 
+  outline: none;
+  transition: border-color 0.3s;
+}
+ 
+.search-input:focus {
+  border-color: #007bff; 
+  box-shadow: 0 0 4px rgba(0, 123, 255, 0.25); 
+}
+ 
+.search-button,
+.clear-button {
+  background-color: #007bff; 
+  color: #fff;
+  border: none;
+  padding: 10px 16px; 
+  font-size: 14px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+ 
+.search-button:hover,
+.clear-button:hover {
+  background-color: #0056b3; 
+}
+ 
+.clear-button {
+  background-color: #6c757d; 
+}
+ 
+.clear-button:hover {
+  background-color: #5a6268; 
+}
+ /* Transactions Header */
+ .transactions-header {
+  display: flex;
+  justify-content: space-between; 
+  align-items: center; 
+  margin-bottom: 16px; 
+}
+
+.transactions-header h2 {
+  margin: 0; 
+  font-size: 1.5rem; 
+  font-weight: bold; 
+  color: #333; 
+}
+
+.transactions-header .export-btn {
+  background: #fff; 
+  border: 1px solid #2471a3; 
+  color: #2471a3; 
+  border-radius: 5px; 
+  padding: 0.3rem 0.9rem; 
+  font-size: 0.95rem; 
+  cursor: pointer; 
+  display: inline-flex; 
+  align-items: center; 
+  gap: 4px; 
+  transition: background 0.2s, color 0.2s;
+
+.transactions-header .export-btn:hover {
+  background: #2471a3; 
+  color: #fff; 
+}
+ 
+/* Export Button */
+.export-button {
+  background-color: #28a745; 
+  color: #fff; 
+  border: none;
+  padding: 8px 16px;
+  font-size: 14px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+ 
+.export-button:hover {
+  background-color: #218838; 
+}
+
+
+.export-btn {
+  background: #fff;
+  border: 1px solid #2471a3; 
+  color: #2471a3; 
+  border-radius: 5px; 
+  padding: 0.3rem 0.9rem; 
+  font-size: 0.95rem; 
+  cursor: pointer; 
+  display: inline-flex; 
+  align-items: center;
+  gap: 4px; 
+  transition: background 0.2s, color 0.2s;
+}
+
+.export-btn:hover {
+  background: #2471a3; /* Blue background on hover */
+  color: #fff; /* White text on hover */
+}
+/* Table Styles */
+/* .transaction-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 16px;
+}
+ 
+.transaction-table th,
+.transaction-table td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: left;
+}
+ 
+.transaction-table th {
+  background-color: #f4f4f4;
+  font-weight: bold;
+}
+ 
+.transaction-table tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+ 
+.transaction-table tr:hover {
+  background-color: #f1f1f1;
+} */
+  }

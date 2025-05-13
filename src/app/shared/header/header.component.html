@@ -1,0 +1,52 @@
+<div class="header-container">
+    <!-- Top header with logo and avatar -->
+    <div class="top-header">
+      <div class="left-section">
+        <img src="https://i.ibb.co/4wRvY6zV/track.png" alt="FinTrack" class="logo" />
+        <div class="title-group">
+          <h1 class="brand-title">FinTrack</h1>
+          <p class="brand-subtitle">Where finances meet clarity</p>
+        </div>
+      </div>
+      <div class="right-section">
+        <div class="user-avatar">U</div>
+      </div>
+    </div>
+  
+    <!-- Page title and Add Investment -->
+    <div class="page-controls">
+      <h2 class="page-title">{{ pageTitle }}</h2>
+      <button class="add-button" (click)="onAddClick()">Add Investment</button>
+    </div>
+  
+    <!-- Investment Summary -->
+    <div class="summary-cards">
+      <div class="summary-card">
+        <p class="card-label">Current Value</p>
+        <p class="card-value">₹{{ totalValue.toFixed(2) }}</p>
+      </div>
+      <div class="summary-card">
+        <p class="card-label">Invested Value</p>
+        <p class="card-value">₹{{ totalCost.toFixed(2) }}</p>
+      </div>
+      <div class="summary-card">
+        <p class="card-label">Gain/Loss</p>
+        <p
+          class="card-value"
+          [ngClass]="gainLoss >= 0 ? 'positive' : 'negative'"
+        >
+          ₹{{ gainLoss.toFixed(2) }}
+        </p>
+      </div>
+      <div class="summary-card">
+        <p class="card-label">Gain/Loss %</p>
+        <p
+          class="card-value"
+          [ngClass]="gainLossPercentage >= 0 ? 'positive' : 'negative'"
+        >
+          {{ gainLossPercentage.toFixed(2) }}%
+        </p>
+      </div>
+    </div>
+  </div>
+  

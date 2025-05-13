@@ -1,0 +1,128 @@
+/* Modal Backdrop */
+.modal-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.4);
+  z-index: 1000;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+/* Modal Content */
+.modal-content {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  width: 440px;
+  max-width: 90vw;
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+  transform: translate(-50%, -50%);
+  z-index: 1010;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  animation: fadeInScale 0.3s ease forwards;
+}
+
+/* Animation */
+@keyframes fadeInScale {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, -48%) scale(0.95);
+  }
+  100% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+}
+
+/* Modal Header */
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 24px;
+  border-bottom: 1px solid #e5e7eb; /* Light gray */
+  background-color: #f9fafb;
+}
+
+.modal-header h3 {
+  margin: 0;
+  font-size: 1.375rem; /* 22px */
+  font-weight: 600;
+  color: #111827;
+  letter-spacing: 0.02em;
+}
+
+/* Close Button */
+.close-btn {
+  background: transparent;
+  border: none;
+  font-size: 1.5rem;
+  color: #6b7280;
+  cursor: pointer;
+  transition: color 0.2s ease;
+  padding: 0;
+  line-height: 1;
+}
+
+.close-btn:hover,
+.close-btn:focus {
+  color: #ef4444; /* Red 500 */
+  outline: none;
+}
+
+/* Modal Body */
+.modal-body {
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  background-color: #ffffff;
+}
+
+/* Label */
+label {
+  font-weight: 600;
+  font-size: 1rem;
+  color: #374151;
+  margin-bottom: 8px;
+  user-select: none;
+}
+
+/* Select Dropdown */
+select {
+  width: 100%;
+  padding: 10px 14px;
+  font-size: 1rem;
+  border: 1.5px solid #d1d5db;
+  border-radius: 8px;
+  background-color: #f9fafb;
+  color: #111827;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  cursor: pointer;
+}
+
+select:focus {
+  border-color: #6366f1; /* Indigo 500 */
+  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.3);
+  outline: none;
+}
+
+/* Responsive adjustments */
+@media (max-width: 480px) {
+  .modal-content {
+    width: 95vw;
+  }
+
+  .modal-header,
+  .modal-body {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+}
